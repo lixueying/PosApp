@@ -15,7 +15,10 @@ namespace PosApp
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<PosService>().InstancePerLifetimeScope();
+            builder.RegisterType<PromotionService>().InstancePerLifetimeScope();
             builder.RegisterType<ProductRespository>().As<IProductRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<PromotionRespository>().As<IPromotionRepository>().InstancePerLifetimeScope();
+
             builder.Register(CreateSessionFactory).InstancePerLifetimeScope();
             builder.Register(CreateSession).InstancePerLifetimeScope();
         }

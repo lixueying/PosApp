@@ -9,4 +9,6 @@ namespace PosApp.Repositories
         int CountByBarcodes(IList<string> barcodes);
         void Save(Product product);
     }
+
+    
 }

@@ -9,9 +9,13 @@ namespace PosApp.Services
     public class PosService
     {
         readonly IProductRepository m_repository;
+        readonly PromotionService m_promotionService;
 
-        public PosService(IProductRepository repository)
+        
+
+        public PosService(IProductRepository repository, PromotionService promotionService)
         {
+            m_promotionService = promotionService;
             m_repository = repository;
         }
 
@@ -28,10 +32,14 @@ namespace PosApp.Services
             Dictionary<string, Product> boughtProductSet = m_repository
                 .GetByBarcodes(barcodes)
                 .ToDictionary(p => p.Barcode, p => p);
-            return boughtProducts
+            
+
+            ReceiptItem[] receiptItems = boughtProducts
                 .GroupBy(bp => bp.Barcode)
-                .Select(g => new ReceiptItem(boughtProductSet[g.Key], g.Sum(bp => bp.Amount)))
+                .Select(g => new ReceiptItem(boughtProductSet[g.Key], g.Sum(bp => bp.Amount), 0))
                 .ToArray();
+
+            return m_promotionService.CalculateSubPromoted(receiptItems);
         }
 
         void Validate(IList<BoughtProduct> boughtProducts)
@@ -48,5 +56,7 @@ namespace PosApp.Services
                 throw new ArgumentException("Some of the products cannot be found.");
             }
         }
+
+
     }
 }

@@ -20,6 +20,7 @@ task migration {
 }
 
 task migration-ut {
+    exec { msbuild ".\posApp.sln" }
     do-migration 'pos-ut'
 }
 

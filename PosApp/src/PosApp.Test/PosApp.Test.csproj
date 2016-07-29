@@ -85,11 +85,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apis\PromotionControllerFacts.cs" />
     <Compile Include="Common\ApiFactBase.cs" />
     <Compile Include="Common\DatabaseHelper.cs" />
     <Compile Include="Common\FactBase.cs" />
+    <Compile Include="Common\HttpClientExtensions.cs" />
     <Compile Include="DomainFixtures\Fixtures.cs" />
     <Compile Include="Common\OutputRedirector.cs" />
+    <Compile Include="Unit\PromotionFacts.cs" />
     <Compile Include="Unit\TagRequestExtensionFacts.cs" />
     <Compile Include="Unit\PosAppFacts.cs" />
     <Compile Include="DomainFixtures\ProductFixtures.cs" />

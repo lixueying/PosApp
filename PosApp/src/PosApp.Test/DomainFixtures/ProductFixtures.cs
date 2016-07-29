@@ -20,4 +20,20 @@ namespace PosApp.Test.DomainFixtures
             product.ForEach(p => productRepository.Save(p));
         }
     }
+
+    public class PromotionFixtures
+    {
+        readonly ILifetimeScope m_scope;
+
+        public PromotionFixtures(ILifetimeScope scope)
+        {
+            m_scope = scope;
+        }
+
+        public void Create(params Promotion[] promotions)
+        {
+            var promotionRepository = m_scope.Resolve<IPromotionRepository>();
+            promotions.ForEach(p => promotionRepository.Save(p));
+        }
+    }
 }
